@@ -1,0 +1,27 @@
+
+
+<div class="contain">
+    <div class="allform">
+      <form [formGroup]="loginform">
+  
+        <div class="content-box">
+          <div class="label">
+            <label for="email">Email</label>
+            <input type="text" id="email" pInputText formControlName="Email">
+          </div>
+        </div>
+  
+        <div class="content-box">
+          <div class="label">
+            <label for="password">Password</label>
+            <input type="password" id="password" pInputText formControlName="pasword">
+          </div>
+        </div>
+        <div class="card">
+    <p-button label="Submit" (click)="show()"></p-button>
+</div>
+
+      </form>
+    </div>
+  </div>
+  

@@ -1,0 +1,106 @@
+
+
+<p-sidebar [(visible)]="sidebarVisible2" position="right"  [dismissible]="false" [closeOnEscape]="false">
+    <ng-template pTemplate="header">
+        <div class="header">
+           Assign task 
+        </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+
+        <div class="allform-content">
+             <form [formGroup]="userform">
+     
+                <!-- ---------------------------------Project name-------------------------- -->
+                <div class="content-box">
+                    <div class="label-box">
+                      <label for="" class="label">Project Name</label>
+                      <p-dropdown
+                        formControlName="selectproject" 
+                        [options]="projects"
+                        optionLabel="name"
+                        placeholder="Select a Project"
+                      ></p-dropdown>
+                    </div>
+                  
+                    <div class="error" *ngIf="userControl['selectproject'].invalid && (userControl['selectproject'].dirty || userControl['selectproject'].touched)">
+                      <span class="error-type" *ngIf="userControl['selectproject'].errors?.['required']">Please select a project</span>
+                    </div>
+                  </div>
+                  
+               <!-- ------------------------------------ task name---------------------- -->
+
+        <div class="content-box">
+            <div class="label-box">
+                <label for="" class="label" >Task Details</label>
+                <input type="text" pInputText formControlName="taskName">
+            </div>
+            <div class="error" *ngIf="userControl['taskName'].invalid && (userControl['taskName'].dirty || userControl['taskName'].touched)">
+           <span class="error-type" *ngIf="userControl['taskName'].errors?.['required']"> Task Required</span>
+           <span class="error-type" *ngIf="userControl['taskName'].errors?.['minlength']"> Minimum 3 letters Required</span>
+           <span class="error-type" *ngIf="userControl['taskName'].errors?.['maxlength']"> Minimum 3 letters Required</span>
+            </div>
+        </div> 
+ <!-- -------------------------------------------member----------------------------- -->
+
+ <div class="content-box">
+    <div class="label-box">
+      <label for="" class="label">Team Members</label>
+        <p-dropdown
+        formControlName="selectedMember"
+        [options]="members"
+        optionLabel="name"
+        placeholder="Select a Member"
+      ></p-dropdown>
+    </div>
+      <div class="error" *ngIf="userControl['selectedMember'].invalid && (userControl['selectedMember'].dirty || userControl['selectedMember'].touched)">
+      <span class="error-type" *ngIf="userControl['selectedMember'].errors?.['required']">Please select a Member</span>
+    </div>
+  </div>
+  <!-- ---------------------------------start date------------- -->
+  <div class="content-box">
+    <div class="label-box">
+      <label for="" class="label">Start Date</label>
+  
+      <p-calendar
+        formControlName="date" 
+        placeholder="Start Date"
+      ></p-calendar>
+    </div>
+  
+    <div class="error" *ngIf="userControl['date'].invalid && (userControl['date'].dirty || userControl['date'].touched)">
+      <span class="error-type" *ngIf="userControl['date'].errors?.['required']">Please select a date</span>
+    </div>
+  </div>
+     <!-- -------------------------end Date------------------------ -->
+     <div class="content-box">
+        <div class="label-box">
+          <label class="label">End Date</label> 
+          <p-calendar
+            formControlName="enddate" 
+            placeholder="End Date"
+          ></p-calendar>
+        </div>
+              <div class="error" *ngIf="userControl['enddate'].invalid && (userControl['enddate'].dirty || userControl['enddate'].touched)">
+          <span class="error-type" *ngIf="userControl['enddate'].errors?.['required']">Please select a End date</span>
+        </div>
+      </div>
+</form>
+</div>
+</ng-template>
+
+<ng-template pTemplate="footer">
+    <div class="footer">
+        <div class="card-cancel">
+            <p-button label="Cancel" (click)="cancel()"></p-button>
+        </div>
+        <div class="card-submit">
+            <p-button label="submit"(click)="show()"></p-button>
+        </div>
+    </div>
+</ng-template>   
+
+</p-sidebar>
+<nav>
+<p-button label="opensidebar" (click)="open()"></p-button>
+</nav>

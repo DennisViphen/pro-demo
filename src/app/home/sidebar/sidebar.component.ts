@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiList } from 'src/app/api-list';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,8 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SidebarComponent {
   sidebarVisible2: boolean = false;
   userform!:FormGroup
-
-constructor(private fb:FormBuilder){
+   task:any
+constructor(private fb:FormBuilder,private apiservice :ApiService){
   this.userform =this.fb.group({
     selectproject:['',[ Validators.required]],
     taskName:['',[Validators.required,Validators.minLength(3),Validators.maxLength(500),]],
@@ -23,6 +25,9 @@ constructor(private fb:FormBuilder){
 }
 get userControl(){
   return this.userform.controls
+}
+ngOnInit(){
+  this.getAllTask()
 }
   open(){
     this.sidebarVisible2= true
@@ -49,5 +54,17 @@ get userControl(){
   cancel(){
     this.userform.reset()
   }
-
+  getAllTask(){
+    this.apiservice.Get(ApiList.getAllTask).subscribe({
+      next:(res:any) => {
+        console.log(res);
+         this.task=res.data
+      },
+      error:(error:any) => {
+        console.log(error);
+        
+      }
+      
+    })
+  }
 }

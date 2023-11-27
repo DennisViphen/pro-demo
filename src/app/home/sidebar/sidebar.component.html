@@ -1,6 +1,6 @@
 
 
-<p-sidebar [(visible)]="sidebarVisible2" position="right"  [dismissible]="false" [closeOnEscape]="false">
+<p-sidebar [(visible)]="sidebarVisible2" position="right"  [dismissible]="false" [closeOnEscape]="false" (onHide)="cancel()" >
     <ng-template pTemplate="header">
         <div class="header">
            Assign task 
@@ -13,27 +13,23 @@
      
                 <!-- ---------------------------------Project name-------------------------- -->
                 <div class="content-box">
-                    <div class="label-box">
-                      <label for="" class="label">Project Name</label>
-                      <p-dropdown
-                        formControlName="selectproject" 
-                        [options]="projects"
-                        optionLabel="name"
-                        placeholder="Select a Project"
-                      ></p-dropdown>
-                    </div>
-                  
-                    <div class="error" *ngIf="userControl['selectproject'].invalid && (userControl['selectproject'].dirty || userControl['selectproject'].touched)">
-                      <span class="error-type" *ngIf="userControl['selectproject'].errors?.['required']">Please select a project</span>
-                    </div>
+                  <div class="label-box m-t">
+                      <label for="" class="label m-t" >Project Name</label>
+                      <input type="text" pInputText formControlName="projectname" placeholder="Project Name">
                   </div>
+                  <div class="error" *ngIf="userControl['projectname'].invalid && (userControl['projectname'].dirty || userControl['projectname'].touched)">
+                 <span class="error-type" *ngIf="userControl['projectname'].errors?.['required']"> Project Name Required</span>
+                 <span class="error-type" *ngIf="userControl['projectname'].errors?.['minlength']"> Minimum 2 letters Required</span>
+                 <span class="error-type" *ngIf="userControl['projectname'].errors?.['maxlength']"> Minimum 3 letters Required</span>
+                  </div>
+              </div> 
                   
                <!-- ------------------------------------ task name---------------------- -->
 
         <div class="content-box">
-            <div class="label-box">
-                <label for="" class="label" >Task Details</label>
-                <input type="text" pInputText formControlName="taskName">
+            <div class="label-box m-t">
+                <label for="" class="label m-t" >Task Details</label>
+                <input type="text" pInputText formControlName="taskName" placeholder="Task Detail">
             </div>
             <div class="error" *ngIf="userControl['taskName'].invalid && (userControl['taskName'].dirty || userControl['taskName'].touched)">
            <span class="error-type" *ngIf="userControl['taskName'].errors?.['required']"> Task Required</span>
@@ -45,27 +41,23 @@
 
  <div class="content-box">
     <div class="label-box">
-      <label for="" class="label">Team Members</label>
-        <p-dropdown
-        formControlName="selectedMember"
-        [options]="members"
-        optionLabel="name"
-        placeholder="Select a Member"
-      ></p-dropdown>
+      <label for="" class="label m-t">Team Members</label>
+        <p-dropdown formControlName="selectedMember" [options]="members" optionLabel="name" placeholder="Select a Member"></p-dropdown>
     </div>
       <div class="error" *ngIf="userControl['selectedMember'].invalid && (userControl['selectedMember'].dirty || userControl['selectedMember'].touched)">
       <span class="error-type" *ngIf="userControl['selectedMember'].errors?.['required']">Please select a Member</span>
     </div>
   </div>
+
+ <!-- -----------------------------------Gender--------------------- -->
+
+
   <!-- ---------------------------------start date------------- -->
   <div class="content-box">
     <div class="label-box">
-      <label for="" class="label">Start Date</label>
+      <label for="" class="label m-t">Start Date</label>
   
-      <p-calendar
-        formControlName="date" 
-        placeholder="Start Date"
-      ></p-calendar>
+      <p-calendar formControlName="date" placeholder="Start Date"></p-calendar>
     </div>
   
     <div class="error" *ngIf="userControl['date'].invalid && (userControl['date'].dirty || userControl['date'].touched)">
@@ -73,13 +65,10 @@
     </div>
   </div>
      <!-- -------------------------end Date------------------------ -->
-     <div class="content-box">
+     <div class="content-box">  
         <div class="label-box">
-          <label class="label">End Date</label> 
-          <p-calendar
-            formControlName="enddate" 
-            placeholder="End Date"
-          ></p-calendar>
+          <label class="label m-t">End Date</label> 
+          <p-calendar formControlName="enddate" placeholder="End Date"></p-calendar>
         </div>
               <div class="error" *ngIf="userControl['enddate'].invalid && (userControl['enddate'].dirty || userControl['enddate'].touched)">
           <span class="error-type" *ngIf="userControl['enddate'].errors?.['required']">Please select a End date</span>
@@ -90,17 +79,48 @@
 </ng-template>
 
 <ng-template pTemplate="footer">
-    <div class="footer">
-        <div class="card-cancel">
+    <div class="footer flex flex-js-c">
+        <div class="card-cancel ps-4">
             <p-button label="Cancel" (click)="cancel()"></p-button>
         </div>
-        <div class="card-submit">
+        <div class="card-submit ps-4">
             <p-button label="submit"(click)="show()"></p-button>
         </div>
     </div>
 </ng-template>   
-
 </p-sidebar>
+
 <nav>
+  <div class="searchbarview p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input type="text" pInputText formControlName="text"/>
+  </div>
+  <div class="sidebarview">
 <p-button label="opensidebar" (click)="open()"></p-button>
+</div>
 </nav>
+             <!-- ------------------------Table----------------- -->
+
+<div class="alltable flex flex-js-c f-w1">
+  <table class="f-w1">
+    <thead>
+        <tr>
+            <th>Project Name</th>
+            <th>Task Detail</th>
+            <th>Team Member</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+        </tr>
+         </tbody>
+</table> 
+</div>
+

@@ -12,8 +12,8 @@ export class SidebarComponent {
 
 constructor(private fb:FormBuilder){
   this.userform =this.fb.group({
-    selectproject:['',[ Validators.required]],
-    taskName:['',[Validators.required,Validators.minLength(3),Validators.maxLength(500),]],
+    projectname:['',[Validators.required,Validators.minLength(2),Validators.maxLength(200)]],
+    taskName:['',[Validators.required,Validators.minLength(2),Validators.maxLength(200)]],
     selectedMember:['',[ Validators.required]],
     date:['',[ Validators.required]],
     enddate:['',[ Validators.required]],
@@ -47,7 +47,9 @@ get userControl(){
     }  
   }
   cancel(){
-    this.userform.reset()
+    this.userform.reset();
+    this.sidebarVisible2 = false;
+    
   }
 
 }

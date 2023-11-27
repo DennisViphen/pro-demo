@@ -1,5 +1,5 @@
 
-
+<!-- 
 <div class="contain">
     <div class="allform">
       <form [formGroup]="loginform">
@@ -23,5 +23,74 @@
 
       </form>
     </div>
+  </div> -->
+  
+  <div class="container">
+    <div class="img-div">
+     
+    </div>
+  
+    <!-- <div class="login-div ">
+      <form [formGroup]="loginform">
+
+        <div class="span-text">Welcome back!
+        </div>
+        <div class="content-box">
+          <div class="label-box">
+            <label for="email" class="label">Email</label>
+            <input type="text" id="email" pInputText formControlName="Email">
+          </div>
+          <div class="error" *ngIf="userControl['Email'].invalid && (userControl['Email'].dirty || userControl['Email'].touched)">
+            <span class="error-type" *ngIf="userControl['Email'].errors?.['required']">Email is required</span>
+          </div>
+        </div>
+  
+        <div class="content-box">
+          <div class="label-box">
+            <label for="password" class="label">Password</label>
+            <input type="password" id="password" pInputText formControlName="password">
+          </div>
+          <div class="error" *ngIf="userControl['password'].invalid && (userControl['password'].dirty || userControl['password'].touched)">
+            <span class="error-type" *ngIf="userControl['password'].errors?.['required']">Password is required</span>
+          </div>
+        </div>
+        <p-button label="Login"></p-button>
+      </form>
+    </div> -->
+
+    <div class="login-div flex flex-col ps-4 ">
+      <div class="header">
+        <h2>Welcome back!</h2>
+      </div>
+
+      <form [formGroup]="loginform">
+    <div class="content-box">
+      <div class="input-fields  flex flex-col">
+        <label for=""> Email</label>
+        <input type="text" pInputText formControlName="Email"/>
+      </div>
+      <div class="error" *ngIf="userControl['Email'].invalid && (userControl['Email'].dirty || userControl['Email'].touched)">
+        <span class="error-type" *ngIf="userControl['Email'].errors?.['required']">Email is required</span>
+        <span class="error-type" *ngIf="userControl['Email'].errors?.['email']">Invalid Email Format</span>
+      </div>
+      </div>
+      
+      <div class="content-box">
+      <div class="input-fields flex flex-col">
+        <label for=""> password</label>
+        <input type="text" pInputText formControlName="password"/>
+      </div>
+      <div class="error" *ngIf="userControl['password'].invalid && (userControl['password'].dirty || userControl['password'].touched)">
+        <span class="error-type" *ngIf="userControl['password'].errors?.['required']">password is required</span>
+        <span class="error-type" *ngIf="userControl['password'].errors?.['pattern']">Invalid password </span>
+      </div>
+      </div>
+</form>
+      <p-button label="Submit" (click)="show()"></p-button>
+
+
+    </div>
+
+
   </div>
   

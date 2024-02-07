@@ -67,11 +67,11 @@
     <div class="content-box">
       <div class="input-fields  flex flex-col">
         <label for=""> Email</label>
-        <input type="text" pInputText formControlName="Email"/>
+        <input type="text" pInputText formControlName="email"/>
       </div>
-      <div class="error" *ngIf="userControl['Email'].invalid && (userControl['Email'].dirty || userControl['Email'].touched)">
-        <span class="error-type" *ngIf="userControl['Email'].errors?.['required']">Email is required</span>
-        <span class="error-type" *ngIf="userControl['Email'].errors?.['email']">Invalid Email Format</span>
+      <div class="error" *ngIf="userControl['email'].invalid && (userControl['email'].dirty || userControl['email'].touched)">
+        <span class="error-type" *ngIf="userControl['email'].errors?.['required']">email is required</span>
+        <span class="error-type" *ngIf="userControl['email'].errors?.['email']">Invalid Email Format</span>
       </div>
       </div>
       
@@ -86,7 +86,7 @@
       </div>
       </div>
 </form>
-      <p-button label="Submit" (click)="show()"></p-button>
+      <p-button label="Submit" (click)="login()"></p-button>
 
 
     </div>
